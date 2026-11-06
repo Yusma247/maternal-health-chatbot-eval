@@ -1,1 +1,9 @@
 API_keys.json
+.venv/
+__pycache__/
+.pytest_cache/
+data/source/
+data/passages/
+data/draft_qa.csv
+models/
+Modelfile.base
