@@ -1,4 +1,4 @@
 requests
-google-genai
+google-genai<3.0
 pypdf
 pytest
