@@ -68,7 +68,7 @@ def main():
     print(f"Using {len(passages)} passages "
           f"({len(covered_passage_ids)} already covered in {args.out}, skipped)")
 
-    rows = []
+    new_rows = []
     for passage in passages:
         prompt = GEN_PROMPT.replace("{n}", str(args.per_passage)).replace("{passage}", passage["text"])
         try:
@@ -79,8 +79,8 @@ def main():
         pairs = parse_qa_json(reply)
         print(f"{passage['id']}: {len(pairs)} pairs")
         for pair in pairs:
-            rows.append({
-                "id": f"q{len(rows) + 1:04d}",
+            new_rows.append({
+                "id": f"q{next_id + len(new_rows):04d}",
                 "passage_id": passage["id"],
                 "question": pair["question"],
                 "answer": pair["answer"],
@@ -89,12 +89,13 @@ def main():
             })
         time.sleep(args.sleep)
 
+    all_rows = existing_rows + new_rows
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     with open(args.out, "w", newline="", encoding="utf-8-sig") as f:
         writer = csv.DictWriter(f, fieldnames=FIELDS)
         writer.writeheader()
-        writer.writerows(rows)
-    print(f"Saved {len(rows)} drafts -> {args.out}")
+        writer.writerows(all_rows)
+    print(f"Saved {len(new_rows)} new drafts ({len(all_rows)} total) -> {args.out}")
 
 
 if __name__ == "__main__":
