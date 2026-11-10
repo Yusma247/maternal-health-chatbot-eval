@@ -26,11 +26,11 @@ def _next_key():
     return next(_key_cycle)
 
 
-def ask_gemini(prompt, system, temperature=0.3, model="gemini-2.5-flash"):
+def ask_gemini(prompt, system, temperature=0.3, model="gemini-2.5-flash", api_key=None):
     from google import genai
     from google.genai import types
 
-    client = genai.Client(api_key=_next_key())
+    client = genai.Client(api_key=api_key or _next_key())
     response = client.models.generate_content(
         model=model,
         contents=prompt,
