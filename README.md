@@ -72,14 +72,23 @@ I am not giving one clean accuracy number. With five test cases and real flaws i
 
 Read `reports/baseline.csv` and `reports/tuned5.csv`, the final attempt, or open `colab/finetune_didi.ipynb`.
 
-Reproduce the baseline yourself.
+Reproduce the baseline yourself. This works with no extra setup beyond Ollama, tested fresh.
 ```powershell
 # Install Ollama first (https://ollama.com/download)
 ollama pull llama3.2:1b
-python -m venv .venv && .venv\Scripts\activate
+python -m venv .venv
+.venv\Scripts\activate
 pip install -r requirements-eval.txt
-python -m scripts.run_eval --backend ollama --model llama3.2:1b --out reports\baseline_repro.csv
+python -m scripts.run_eval --backend ollama --model llama3.2:1b --out reports\baseline_repro.csv --no-judge
 ```
+
+That gives you the required content checks, no API key needed. If `.venv\Scripts\activate` does not run, your PowerShell execution policy may be blocking it. Fix with `Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned`, then try again.
+
+To also get judge scores, not just the keyword checks, create `API_keys.json` in the repo root with your own Gemini key.
+```json
+{"GEMINI_API_KEYS": ["your-key-here"]}
+```
+Then drop `--no-judge` from the command above.
 
 Reproduce the fine-tune. Open `colab/finetune_didi.ipynb` in Google Colab, Runtime then T4 GPU, upload `data/train.jsonl` and `data/test.jsonl`, and run the cells in order. Training takes under a minute.
 
