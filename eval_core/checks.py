@@ -5,6 +5,7 @@ NEGATION_CUES = (
     "do not",
     "don't",
     "dont",
+    "not to",
     "never",
     "not safe",
     "should not",

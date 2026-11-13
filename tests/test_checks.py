@@ -36,3 +36,8 @@ def test_negation_in_other_sentence_does_not_excuse_claim():
 def test_forbidden_handles_newlines_as_sentence_breaks():
     text = "Never give it.\nIbuprofen is safe"
     assert len(check_forbidden(text, ["ibuprofen is safe"])["violations"]) == 1
+
+
+def test_forbidden_ignores_not_to_phrasing():
+    text = "Advise the mother not to give paracetamol syrup to the baby."
+    assert check_forbidden(text, ["give paracetamol"])["violations"] == []
