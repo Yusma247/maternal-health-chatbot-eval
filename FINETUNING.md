@@ -38,7 +38,7 @@ I am not giving one clean accuracy number. With five test cases and real flaws i
 
 ## Running it yourself
 
-See the results without installing anything. Read `reports/baseline.csv` and `reports/tuned5.csv`, the final attempt, or open `colab/finetune_didi.ipynb` directly on GitHub.
+Read `reports/baseline.csv` and `reports/tuned5.csv`, the final attempt, or open `colab/finetune_didi.ipynb`.
 
 Reproduce the baseline yourself.
 ```powershell
