@@ -1,6 +1,6 @@
 # Didi, a Fine-Tuned Health Assistant for ASHA Workers
 
-I made Didi, a maternal and newborn health assistant for ASHA workers in India, using an open weighted model. I trained her on the real government ASHA manual and run her on my own laptop, with a free Colab GPU for the training step.
+I made Didi, a maternal and newborn health assistant for ASHA workers in India, using an open weighted model. I trained her on the real government ASHA manual and ran her on my own laptop, with a free Colab GPU for the training step.
 
 ## What I proved
 
